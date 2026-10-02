@@ -53,10 +53,9 @@
 
    -- Thread functions --
 
-   thread = launch(probe, payload) - launch a thread -- exit via probe() return
-   join(thread) - join a thread and by joining end it, waiting for the thread
-        to exit if it hasn't already -- will free the resources allocated by
-        launch() (don't try to join the same thread more than once)
+   thread = launch(probe, payload) - launch a new thread -- the thread exits via the return of probe()
+   join(thread) - join a thread, which ends it, blocking until the thread exits if it hasn't already
+          -- frees the resources allocated by launch() (don't attempt to join the same thread twice)
    n = join_all() - join all threads launched by launch() that are not joined
         yet and free the resources allocated by the launches, usually to clean
         up when the thread processing is done -- join_all() returns an int with

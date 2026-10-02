@@ -55,9 +55,9 @@
    with application symbols. The eight exposed names can be changed easily in
    #defines below.
 
-   A try block encloses code that may throw an exception with the throw()
-   macro, either directly in the try block or in any function called directly
-   or indirectly from the try block.  throw() must have at least one argument,
+   A try block wraps code that may raise an exception via the throw()
+   macro, whether that call happens directly inside the block or in any
+   function reached from it, directly or indirectly.  throw() must have at least one argument,
    which is an integer.  The try block is followed by a catch block whose code
    will be executed when throw() is called with a non-zero first argument.  If
    the first argument of throw() is zero, then execution continues after the

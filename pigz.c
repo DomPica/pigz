@@ -2999,7 +2999,7 @@ local int more_zip_entries(void) {
             // Now in a suspected central file header, just past the signature.
             // Read the rest of the fixed-length portion of the header.
             unsigned char head[CEN];
-            size_t need = CEN, part = 0, len, i;
+            size_t need = CEN, part = 0, len, idx;
 
             if (need > g.in_left) {     // will only need to do this once
                 part = g.in_left;
@@ -3026,9 +3026,10 @@ local int more_zip_entries(void) {
                 // Skip the file name and extra field.
                 SKIP(PULL2L(head + 24) + (unsigned long)PULL2L(head + 26));
 
-                // Save the comment field.
+                // Save the comment field. The buffer is sized to exactly fit the
+                // comment; it is manually terminated below.
                 need = len;
-                g.hcomm = alloc(NULL, len + 1);
+                g.hcomm = alloc(NULL, len);
                 while (need > g.in_left) {
                     memcpy(g.hcomm + len - need, g.in_next, g.in_left);
                     need -= g.in_left;
@@ -3041,9 +3042,12 @@ local int more_zip_entries(void) {
                 memcpy(g.hcomm + len - need, g.in_next, need);
                 g.in_next += need;
                 g.in_left -= need;
-                for (i = 0; i < len; i++)
-                    if (g.hcomm[i] == 0)
-                        g.hcomm[i] = ' ';
+                idx = 0;
+                while(idx < len) {
+                    if (g.hcomm[idx] == 0)
+                        g.hcomm[idx] = ' ';
+                    idx++;
+                    }
                 g.hcomm[len] = 0;
                 return ret;
             }
