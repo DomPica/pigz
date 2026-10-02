@@ -323,7 +323,7 @@
 #define punt TRY_PUNT_
 #define drop TRY_DROP_
 
-/* Package of an integer code and any other data to be thrown and caught. Here,
+/* Package of integer code and any other data to be thrown and caught. Here,
    why is a string with information to be displayed to indicate why an
    exception was thrown.  free is true if why was allocated and should be freed
    when no longer needed.  This structure can be customized as needed, but it
@@ -410,9 +410,9 @@ struct try_s_ {
    informational string.  So it's best to not throw() in an always block.  Keep
    the always block simple.
 
-   Great care must be taken if the always block uses an automatic storage
+   Great care must be taken if the always block uses automatic storage
    variable local to the enclosing function that can be modified in the try
-   block.  Such variables must be declared volatile.  If such a variable is not
+   block.  Such variables must be declared volatile.  If the variable is not
    declared volatile, and if the compiler elects to keep that variable in a
    register, then the throw will restore that variable to its state at the
    beginning of the try block, wiping out any change that occurred in the try
