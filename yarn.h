@@ -87,8 +87,8 @@
 
    -- Memory allocation ---
 
-   yarn_mem(better_malloc, better_free) - set the memory allocation and free
-        routines for use by the yarn routines where the supplied routines have
+   yarn_mem(better_malloc, better_free) - sets memory allocation and frees
+        routines for use by yarn routines where the supplied routines have
         the same interface and operation as malloc() and free(), and may be
         provided in order to supply thread-safe memory allocation routines or
         for any other reason -- by default malloc() and free() will be used
