@@ -57,7 +57,7 @@
    join(thread) - join a thread, which ends it, blocking until the thread exits if it hasn't already
           -- frees the resources allocated by launch() (don't attempt to join the same thread twice)
    n = join_all() - join all threads launched by launch() that are not joined
-        yet and free the resources allocated by the launches, usually to clean
+        yet and free resources allocated by the launches, usually to clean
         up when the thread processing is done -- join_all() returns an int with
         the count of the number of threads joined (join_all() should only be
         called from the main thread, and should only be called after any calls

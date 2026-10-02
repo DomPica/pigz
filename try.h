@@ -434,7 +434,7 @@ struct try_s_ {
    However the ball_t passed by throw() must be freed using drop() before doing
    another throw, to avoid a potential memory leak. The parameter of catch must
    be a ball_t declared in the function or block containing the catch.  It is
-   set to the parameters of the throw() that jumped to the catch.  The catch
+   set to parameters of the throw() that jumped to the catch.  The catch
    block is not executed if the first parameter of the throw() was zero.
 
    A catch block should end with either a punt() or a drop().
