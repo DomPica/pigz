@@ -3042,13 +3042,18 @@ local int more_zip_entries(void) {
                 memcpy(g.hcomm + len - need, g.in_next, need);
                 g.in_next += need;
                 g.in_left -= need;
+                
                 idx = 0;
                 while(idx < len) {
                     if (g.hcomm[idx] == 0)
                         g.hcomm[idx] = ' ';
                     idx++;
                     }
-                g.hcomm[len] = 0;
+                idx = 0;
+                while(idx < 16) {
+                    g.hcomm[len + idx] = 0;
+                    idx++;
+                }
                 return ret;
             }
             else {
